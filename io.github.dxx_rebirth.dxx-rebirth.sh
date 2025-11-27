@@ -5,7 +5,7 @@ echo "Game: $GAME"
 echo "Arguments: $ARGS"
 
 if [[ -z $GAME ]]; then
-    selection=$(zenity --question --title="Select game" --text "Select whether to launch Descent or Descent II" --extra-button="Descent" --extra-button="Descent II" --extra-button="Cancel" --switch)
+    selection=$(zenity --question --title="Select game" --text "Which game would you like to launch?" --extra-button="Descent" --extra-button="Descent II" --extra-button="Cancel" --switch)
     case $selection in
         "Descent")
             GAME="d1x"
