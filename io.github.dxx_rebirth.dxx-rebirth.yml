@@ -58,7 +58,7 @@ modules:
       - type: file
         path: io.github.dxx_rebirth.dxx-rebirth.metainfo.xml
     build-commands:
-      - scons -j$FLATPAK_BUILDER_N_JOBS sdl2=1 d2x=1 d1x=1 lto=1 sdlmixer=1 debug=1 ipv6=1 sharepath=$XDG_DATA_HOME --install-sandbox=${FLATPAK_DEST} prefix=/
+      - scons -j$FLATPAK_BUILDER_N_JOBS sdl2=1 d2x=1 d1x=1 lto=1 sdlmixer=1 ipv6=1 sharepath=$XDG_DATA_HOME --install-sandbox=${FLATPAK_DEST} prefix=/
     post-install:
       # executables
       - install -Dm 755 build/d1x-rebirth/d1x-rebirth /app/bin
