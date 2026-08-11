@@ -24,8 +24,8 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        sha256: 99c0e94a42a2c1182fa6859b0be697953db07ba936ecc9817ae0d218ced20b15
-        url: https://downloads.sourceforge.net/project/scons/scons/4.10.1/SCons-4.10.1.tar.gz
+        sha256: 5ba48f9e2eb6b9178cabdc9893792418e6970c84f43f4b027e4468e20616a89c
+        url: https://downloads.sourceforge.net/project/scons/scons/4.11.0/SCons-4.11.0.tar.gz
         x-checker-data:
           type: anitya
           project-id: 4770
@@ -33,7 +33,7 @@ modules:
     build-commands:
       - pip3 install --no-index --no-build-isolation --prefix=${FLATPAK_DEST} .
     cleanup:
-      - "*"
+      - '*'
 
   - name: dxx-rebirth
     buildsystem: simple
@@ -58,7 +58,8 @@ modules:
       - type: file
         path: io.github.dxx_rebirth.dxx-rebirth.metainfo.xml
     build-commands:
-      - scons -j$FLATPAK_BUILDER_N_JOBS sdl2=1 d2x=1 d1x=1 lto=1 sdlmixer=1 ipv6=1 sharepath=$XDG_DATA_HOME --install-sandbox=${FLATPAK_DEST} prefix=/
+      - scons -j$FLATPAK_BUILDER_N_JOBS sdl2=1 d2x=1 d1x=1 lto=1 sdlmixer=1 ipv6=1
+        sharepath=$XDG_DATA_HOME --install-sandbox=${FLATPAK_DEST} prefix=/
     post-install:
       # executables
       - install -Dm 755 build/d1x-rebirth/d1x-rebirth /app/bin
@@ -84,6 +85,7 @@ modules:
       # DXX desktop file
       - desktop-file-edit --set-name="DXX-Rebirth" d2x-rebirth/d2x-rebirth.desktop
       - desktop-file-edit --set-key=Exec --set-value="${FLATPAK_ID}.sh" d2x-rebirth/d2x-rebirth.desktop
-      - desktop-file-edit --set-key=Comment --set-value="Modern source port of Descent and Descent II" d2x-rebirth/d2x-rebirth.desktop
+      - desktop-file-edit --set-key=Comment --set-value="Modern source port of Descent
+        and Descent II" d2x-rebirth/d2x-rebirth.desktop
       - desktop-file-edit --set-icon=${FLATPAK_ID} d2x-rebirth/d2x-rebirth.desktop
       - install -Dm 644 d2x-rebirth/d2x-rebirth.desktop /app/share/applications/${FLATPAK_ID}.desktop
