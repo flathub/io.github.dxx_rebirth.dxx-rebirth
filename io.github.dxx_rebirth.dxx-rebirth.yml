@@ -30,10 +30,12 @@ modules:
           type: anitya
           project-id: 4770
           url-template: https://downloads.sourceforge.net/project/scons/scons/$version/SCons-$version.tar.gz
+          versions:
+           "<": "4.11.0"
     build-commands:
       - pip3 install --no-index --no-build-isolation --prefix=${FLATPAK_DEST} .
     cleanup:
-      - "*"
+      - '*'
 
   - name: dxx-rebirth
     buildsystem: simple
@@ -47,8 +49,8 @@ modules:
       #     type: git
       #     tag-pattern: ^v\d+(\.\d+)+.*$
       - type: archive
-        url: https://github.com/dxx-rebirth/dxx-rebirth/archive/b58db2dd9161cdba9b41fc29b969aba338123321.zip
-        sha256: ae2ac111771f332374f53322b0163776ff5758dadd6bc76b3fdd1ec9bb0531e5
+        url: https://github.com/dxx-rebirth/dxx-rebirth/archive/a531f57e423c82a50828604878f13ed63f098dbe.zip
+        sha256: b6d5ede2f15fc6c3e41e5e0146d8366943f1084bd177d365352b978b0573459d
         x-checker-data:
 
       - type: file
@@ -58,7 +60,8 @@ modules:
       - type: file
         path: io.github.dxx_rebirth.dxx-rebirth.metainfo.xml
     build-commands:
-      - scons -j$FLATPAK_BUILDER_N_JOBS sdl2=1 d2x=1 d1x=1 lto=1 sdlmixer=1 ipv6=1 sharepath=$XDG_DATA_HOME --install-sandbox=${FLATPAK_DEST} prefix=/
+      - scons -j$FLATPAK_BUILDER_N_JOBS sdl2=1 d2x=1 d1x=1 lto=1 sdlmixer=1 ipv6=1
+        sharepath=$XDG_DATA_HOME --install-sandbox=${FLATPAK_DEST} prefix=/
     post-install:
       # executables
       - install -Dm 755 build/d1x-rebirth/d1x-rebirth /app/bin
@@ -84,6 +87,7 @@ modules:
       # DXX desktop file
       - desktop-file-edit --set-name="DXX-Rebirth" d2x-rebirth/d2x-rebirth.desktop
       - desktop-file-edit --set-key=Exec --set-value="${FLATPAK_ID}.sh" d2x-rebirth/d2x-rebirth.desktop
-      - desktop-file-edit --set-key=Comment --set-value="Modern source port of Descent and Descent II" d2x-rebirth/d2x-rebirth.desktop
+      - desktop-file-edit --set-key=Comment --set-value="Modern source port of Descent
+        and Descent II" d2x-rebirth/d2x-rebirth.desktop
       - desktop-file-edit --set-icon=${FLATPAK_ID} d2x-rebirth/d2x-rebirth.desktop
       - install -Dm 644 d2x-rebirth/d2x-rebirth.desktop /app/share/applications/${FLATPAK_ID}.desktop
