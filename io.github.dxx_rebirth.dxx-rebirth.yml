@@ -20,6 +20,24 @@ modules:
   - shared-modules/physfs/physfs.json
   - shared-modules/SDL2/SDL2_image.json
 
+  - name: SDL2_mixer
+    config-opts:
+      - --disable-static
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /share
+    sources:
+      - type: git
+        url: https://github.com/libsdl-org/SDL_mixer/
+        tag: release-2.8.2
+        commit: b208916aed9250fe434360e6c6a95f0697bb7b01
+        x-checker-data:
+          type: git
+          tag-pattern: ^release-(\d+.\d+.\d+)$
+          versions: {<: '3'}
+
   - name: scons
     buildsystem: simple
     sources:
