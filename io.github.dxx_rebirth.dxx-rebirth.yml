@@ -58,19 +58,13 @@ modules:
   - name: dxx-rebirth
     buildsystem: simple
     sources:
-      # - type: git
-      #   url: https://github.com/dxx-rebirth/dxx-rebirth.git
-      #   # Pin to recent commit with AppStream metadata for now as latest tag is from 2018
-      #   commit: 5b8dc756f67d3077cfe171838aa15c798cc67c98
-      #   # For future releases, use tags
-      #   x-checker-data:
-      #     type: git
-      #     tag-pattern: ^v\d+(\.\d+)+.*$
       - type: archive
         url: https://github.com/dxx-rebirth/dxx-rebirth/archive/a531f57e423c82a50828604878f13ed63f098dbe.zip
         sha256: b6d5ede2f15fc6c3e41e5e0146d8366943f1084bd177d365352b978b0573459d
-        x-checker-data:
-
+        # For future releases, use tags
+        # x-checker-data:
+        #   type: git
+        #   tag-pattern: ^v\d+(\.\d+)+.*$
       - type: file
         path: io.github.dxx_rebirth.dxx-rebirth.sh
       - type: file
