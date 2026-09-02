@@ -1,6 +1,6 @@
 app-id: io.github.dxx_rebirth.dxx-rebirth
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 command: io.github.dxx_rebirth.dxx-rebirth.sh
 
@@ -19,6 +19,24 @@ modules:
   - shared-modules/glu/glu-9.json
   - shared-modules/physfs/physfs.json
   - shared-modules/SDL2/SDL2_image.json
+
+  - name: SDL2_mixer
+    config-opts:
+      - --disable-static
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /share
+    sources:
+      - type: git
+        url: https://github.com/libsdl-org/SDL_mixer/
+        tag: release-2.8.2
+        commit: b208916aed9250fe434360e6c6a95f0697bb7b01
+        x-checker-data:
+          type: git
+          tag-pattern: ^release-(\d+.\d+.\d+)$
+          versions: {<: '3'}
 
   - name: scons
     buildsystem: simple
@@ -40,19 +58,13 @@ modules:
   - name: dxx-rebirth
     buildsystem: simple
     sources:
-      # - type: git
-      #   url: https://github.com/dxx-rebirth/dxx-rebirth.git
-      #   # Pin to recent commit with AppStream metadata for now as latest tag is from 2018
-      #   commit: 5b8dc756f67d3077cfe171838aa15c798cc67c98
-      #   # For future releases, use tags
-      #   x-checker-data:
-      #     type: git
-      #     tag-pattern: ^v\d+(\.\d+)+.*$
       - type: archive
         url: https://github.com/dxx-rebirth/dxx-rebirth/archive/a531f57e423c82a50828604878f13ed63f098dbe.zip
         sha256: b6d5ede2f15fc6c3e41e5e0146d8366943f1084bd177d365352b978b0573459d
-        x-checker-data:
-
+        # For future releases, use tags
+        # x-checker-data:
+        #   type: git
+        #   tag-pattern: ^v\d+(\.\d+)+.*$
       - type: file
         path: io.github.dxx_rebirth.dxx-rebirth.sh
       - type: file
